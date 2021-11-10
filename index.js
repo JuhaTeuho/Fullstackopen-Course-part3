@@ -9,7 +9,7 @@ let persons = [
 ]
 
 app.get('/info', (req, res) => {
-  res.send(`Phonebook has info for ${persons.length} people`)
+  res.send(`Phonebook has info for ${persons.length} people <br>${new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(new Date())}`)
 })
 
 app.get('/api/persons', (req, res) => {
