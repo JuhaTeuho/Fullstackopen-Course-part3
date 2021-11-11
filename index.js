@@ -44,7 +44,26 @@ app.post('/api/persons', (req, res) => {
   const body = req.body
   console.log(body)
 
+  if (!body.name){
+    res.status(400).json({
+      error: "Required paremeter 'name' is missing"
+    })
+  }
+
+  if (!body.number){
+    res.status(400).json({
+      error: "Required paremeter 'number' is missing"
+    })
+  }
+
   const name = body.name
+
+  if (persons.find(person => person.name === name)){
+    res.status(400).json({
+      error: `Person '${name}' already exists in phonebook!`
+    })
+  }
+
   const number = body.number
   const id = generateId()
   const newPerson = {"id": id, "name": name, "number": number}
